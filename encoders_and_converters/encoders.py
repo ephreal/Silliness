@@ -73,6 +73,8 @@ def b64_to_b10(b64_string):
 	# for i in reversed b64_string
 	for i in b64_string[-1::-1]:
 		if i not in b64:
+                        # So I can use most anything
+                        # as a b64 "number" for fun.
 			continue
 		dec_val += b64.index(i) * curr_pass
 		curr_pass *= 64
