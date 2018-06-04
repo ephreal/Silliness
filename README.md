@@ -21,7 +21,7 @@ The base64 to base10 encoder can do the following:
   convert a string into a base64 encoded string, which is then turned into base 10
   convert a base10 int into a readable string (provided it IS a readable string)
   caeser cipher the base64 encoded text before turning it into a base10 int
-  
+  caeser cipher the base10 after encoding to base10 has completed
 
 If you thought anything on this was fun to use, or you'd like to use this in a project, please be sure to give me the credit for my work. If you'd like to donate, that also wouldn't be remiss.
 

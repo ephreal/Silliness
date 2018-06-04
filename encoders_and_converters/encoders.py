@@ -151,3 +151,18 @@ def better_caeser_encode(phrase, offset):
 		encoded += new_chr
 
 	return encoded
+
+def b10_caeser_cipher(b10_int, offset):
+	"""
+	This silly caeser cipher mods the integer by some
+	amount. Yes, I realize I could run it through the
+	one above, but I want one to keep it as a b10 int
+	"""
+
+	enc_range = '0123456789'
+	encoded = ""
+
+	for i in str(b10_int):
+		encoded += enc_range[(enc_range.index(i)+offset) % 10]
+
+	return encoded

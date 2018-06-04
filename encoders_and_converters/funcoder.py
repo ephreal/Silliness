@@ -41,6 +41,38 @@ def ascii_to_b10(some_ascii):
 
 	return enc
 
+def ascii_b10_cipher(some_ascii, offset):
+	"""
+	Converts ascii to base10 and then
+	runs the b10 through a simple b10
+	caeser cipher.
+	"""
+
+	# Convert to base10
+	some_ascii = ascii_to_b10(some_ascii)
+	# Shuffle int around
+	some_ascii = cipher_b10(some_ascii, offset)
+
+	try:
+		b10 = int(some_ascii)
+	except Exception:
+		print("Error decoding ascii to b10")
+		print("cipher_b10 may have returned")
+		print("something besides b10 chars.")
+		sys.exit()
+
+	return b10
+
+def cipher_b10_ascii(ciphered_b10, offset):
+	"""
+	Deciphers a b10 int that has been encoded
+	with a caeser cipher.
+	"""
+	b10 = cipher_b10(ciphered_b10, offset)
+	some_ascii = b10_to_ascii(int(b10))
+
+	return some_ascii
+
 def b10_caeser_ascii(b10, offset):
 	"""
 	Things get a little more interesting here.
@@ -85,6 +117,17 @@ def ascii_caeser_b10(ascii_str, offset):
 
 
 	return encoded_str
+
+
+def cipher_b10(b10_int, offset):
+	b10_int = b10_caeser_cipher(b10_int, offset)
+
+	if b10_int.startswith("0"):
+		print("ciphered b10 int starts with 0. Choose a different offset.")
+		sys.exit()
+
+	return b10_int
+
 
 def graceful_decode(b64_string):
 	"""
