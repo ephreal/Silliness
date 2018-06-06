@@ -122,6 +122,8 @@ def ascii_caeser_b10(ascii_str, offset):
 def cipher_b10(b10_int, offset):
 	b10_int = b10_caeser_cipher(b10_int, offset)
 
+	b10_int = str(b10_int)
+
 	if b10_int.startswith("0"):
 		print("ciphered b10 int starts with 0. Choose a different offset.")
 		sys.exit()
