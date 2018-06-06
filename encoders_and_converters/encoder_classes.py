@@ -111,6 +111,8 @@ class encoder():
 
 
 	def b64e(self, options):
+		if isinstance(self.message, int):
+			self.message = str(self.message)
 		message = self.message.encode()
 		message = base64.b64encode(message)
 		return message.decode()

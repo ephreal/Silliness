@@ -165,4 +165,4 @@ def b10_caeser_cipher(b10_int, offset):
 	for i in str(b10_int):
 		encoded += enc_range[(enc_range.index(i)+offset) % 10]
 
-	return encoded
+	return int(encoded)
