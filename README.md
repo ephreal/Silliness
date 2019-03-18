@@ -5,6 +5,7 @@ A list follows of what things there are here.
 
 1. A base64 to base10 converter that grew into a fun encoding scheme. You can use this to encode a string as a huge int. Fun!
 
+2. A very basic calculator made it python 3. Mostly here so I can say I made a calculator and/or add things to it in the future.
 
 Explanations of each.
 
@@ -22,6 +23,10 @@ The base64 to base10 encoder can do the following:
   * convert a base10 int into a readable string (provided it IS a readable string)  
   * caeser cipher the base64 encoded text before turning it into a base10 int  
   * caeser cipher the base10 after encoding to base10 has completed  
+
+## Basic python calculator
+
+Most people seem to start GUI programming with a calculator. I hadn't had a chance to make a calculator myself, so I decided it was time to do so. It's written in in python3 with tkinter.
 
 If you thought anything on this was fun to use, or you'd like to use this in a project, please be sure to give me the credit for my work. If you'd like to donate, that also wouldn't be remiss.
 
