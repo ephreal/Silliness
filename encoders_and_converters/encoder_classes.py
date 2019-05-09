@@ -95,7 +95,7 @@ class encoder():
 		return encoders.b10_caeser_cipher(self.message, offset)
 
 	def b10d(self, options):
-		return encoders.b10_to_any(self.message, 64)
+		return encoders.base_ten_to_any(self.message, 64)
 
 	def b10e(self, options):
 		return encoders.b64_to_b10(self.message)

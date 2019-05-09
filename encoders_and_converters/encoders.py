@@ -1,4 +1,6 @@
-def b10_to_any(b10, base):
+import string
+
+def base_ten_to_any(b10, base):
 	"""
 	This will convert the base 10 number b10 to
 	the base specified by base. ie: Pass in 32, 64
@@ -95,8 +97,11 @@ def caeser_encode(phrase, offset):
 	the uppercase/lowercase parts change. 
 	"""
 
-	lower = 'abcdefghijklmnopqrstuvwxyz'
-	upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	# lower = 'abcdefghijklmnopqrstuvwxyz'
+	# upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+	lower = string.ascii_lowercase
+	upper = string.ascii_uppercase
 
 	# Note: I could encode in any way I like
 	# Ie:
@@ -106,9 +111,9 @@ def caeser_encode(phrase, offset):
 	encoded = ''
 
 	for i in phrase:
-		if i in lower:
+		if i in string.ascii_lowercase:
 			new_chr = lower[(lower.index(i)+offset)%26]
-		elif i in upper:
+		elif i in string.ascii_uppercase:
 			new_chr = upper[(upper.index(i)+offset)%26]
 		else:
 			new_chr = i
@@ -144,7 +149,8 @@ def better_caeser_encode(phrase, offset):
 
 	for i in phrase:
 		if i in enc_range:
-			new_chr = enc_range[(enc_range.index(i)+offset)%95]
+			# new_chr = enc_range[(enc_range.index(i)+offset)%95]
+			new_chr = enc_range[(enc_range.index(i)+offset)%len(enc_range)-1]
 		else:
 			new_chr = i
 
@@ -159,10 +165,12 @@ def b10_caeser_cipher(b10_int, offset):
 	one above, but I want one to keep it as a b10 int
 	"""
 
-	enc_range = '0123456789'
+	# enc_range = '0123456789'
+	enc_range = string.digits
 	encoded = ""
 
 	for i in str(b10_int):
+		# encoded += enc_range[(enc_range.index(i)+offset) % 10]
 		encoded += enc_range[(enc_range.index(i)+offset) % 10]
 
 	return int(encoded)
