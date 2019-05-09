@@ -35,7 +35,8 @@ def base_ten_to_any(b10, base):
 	if b10 == 0:
 		return convert[0]
 
-	conv_num = ""
+	# conv_num = ""
+	conv_num = []
 	curr_val = 1
 	places = 0
 	while curr_val <= b10:
@@ -52,12 +53,13 @@ def base_ten_to_any(b10, base):
 		# Subtract decimal value from value passed in
 		b10 -= curr_val * whole
 		# Select b64 val based on whole number
-		conv_num += convert[whole]
+		# conv_num += convert[whole]
+		conv_num.append(convert[whole])
 
 		curr_val //= base
 		places -= 1
 
-	return conv_num
+	return "".join(conv_num)
 
 
 def b64_to_b10(b64_string):
