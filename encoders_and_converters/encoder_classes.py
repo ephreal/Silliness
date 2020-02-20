@@ -64,55 +64,55 @@ class encoder():
 #   Encode to base10 and cipher the base10
 #     b64:b10e:b10c+4
 
-	def __init__(self, message=None, options=None):
-		self.message = message
-		self.options = self.split_options(options)
+    def __init__(self, message=None, options=None):
+        self.message = message
+        self.options = self.split_options(options)
 
-	def split_options(self, options):
-		if options is not None:
-			options = options.split(":")
+    def split_options(self, options):
+        if options is not None:
+            options = options.split(":")
 
-		return options
+        return options
 
-	def handle_options(self):
+    def handle_options(self):
 
-		commands = {
-					"b10c" : self.b10c, "b10d" : self.b10d,
-					"b10e" : self.b10e, "b64c" : self.b64c,
-					"b64d" : self.b64d, "b64e" : self.b64e
-		}
-		for i in self.options:
-			# remove any offsets (if there are any)
-			if "+" in i or "-" in i:
-				cmd = i[0:4]
-			else:
-				cmd = i
+        commands = {
+                    "b10c" : self.b10c, "b10d" : self.b10d,
+                    "b10e" : self.b10e, "b64c" : self.b64c,
+                    "b64d" : self.b64d, "b64e" : self.b64e
+        }
+        for i in self.options:
+            # remove any offsets (if there are any)
+            if "+" in i or "-" in i:
+                cmd = i[0:4]
+            else:
+                cmd = i
 
-			self.message = commands[cmd](i)
+            self.message = commands[cmd](i)
 
-	def b10c(self, options):
-		offset = int(options[4:])
-		return encoders.b10_caeser_cipher(self.message, offset)
+    def b10c(self, options):
+        offset = int(options[4:])
+        return encoders.b10_caeser_cipher(self.message, offset)
 
-	def b10d(self, options):
-		return encoders.base_ten_to_any(self.message, 64)
+    def b10d(self, options):
+        return encoders.base_ten_to_any(self.message, 64)
 
-	def b10e(self, options):
-		return encoders.b64_to_b10(self.message)
+    def b10e(self, options):
+        return encoders.b64_to_b10(self.message)
 
-	def b64c(self, options):
-		offset = int(options[4:])
-		return encoders.caeser_encode(self.message, offset)
+    def b64c(self, options):
+        offset = int(options[4:])
+        return encoders.caeser_encode(self.message, offset)
 
-	def b64d(self, options):
-		message = self.message
-		message = funcoder.graceful_decode(message)
-		return message
+    def b64d(self, options):
+        message = self.message
+        message = funcoder.graceful_decode(message)
+        return message
 
 
-	def b64e(self, options):
-		if isinstance(self.message, int):
-			self.message = str(self.message)
-		message = self.message.encode()
-		message = base64.b64encode(message)
-		return message.decode()
+    def b64e(self, options):
+        if isinstance(self.message, int):
+            self.message = str(self.message)
+        message = self.message.encode()
+        message = base64.b64encode(message)
+        return message.decode()
